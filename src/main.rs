@@ -49,6 +49,10 @@ impl Arguments {
     }
 }
 
+fn scan(tx: Sender<u16>, start_port: u16, addr: IpAddr, num_threads: u16) {
+    
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     let program = args[0].clone():
