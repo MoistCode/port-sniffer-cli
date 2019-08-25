@@ -73,9 +73,9 @@ fn scan(tx: Sender<u16>, start_port: u16, addr: IpAddr, num_threads: u16) {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let program = args[0].clone():
+    let program = args[0].clone();
 
-    let arguments: Arguments = Arguments::new(&args).unwrap_or_else(
+    let arguments = Arguments::new(&args).unwrap_or_else(
         |err| {
             if err.contains("Help") {
                 process::exit(0);
@@ -88,7 +88,7 @@ fn main() {
 
     let num_threads = arguments.threads;
     let addr = arguments.ipaddr;
-    let (tx, rc) = channe();
+    let (tx, rc) = channel();
 
     for i in 0..num_threads {
         let tx = tx.clone();
