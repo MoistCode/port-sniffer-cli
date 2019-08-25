@@ -84,6 +84,7 @@ fn main() {
     });
 
     let num_threads = arguments.threads;
+    let addr = arguments.ipaddr;
     let (tx, rc) = channe();
 
     for i in 0..num_threads {
@@ -92,5 +93,17 @@ fn main() {
         thread::spawn(move || {
             scan(tx, i, arguments.ipaddr, num_threads);
         });
+    }
+
+    let mut out = vec![];
+    drop(tx);
+    for p in rx {
+        out.push(p);
+    }
+
+    println!("");
+    out.sort();
+    for v in out {
+        println!("{} is open", v);
     }
 }
